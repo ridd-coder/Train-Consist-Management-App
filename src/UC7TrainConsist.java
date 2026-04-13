@@ -1,9 +1,9 @@
-// UC7 - Comparator
+// UC8 - Streams
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
-public class UC7TrainConsist {
+public class UC8TrainConsist {
 
     static class Bogie {
         String name;
@@ -22,7 +22,7 @@ public class UC7TrainConsist {
     public static void main(String[] args) {
 
         System.out.println("=======================================");
-        System.out.println("   UC7 - Sort Bogies by Capacity");
+        System.out.println("   UC8 - Filter Passenger Bogies Using Streams");
         System.out.println("=======================================\n");
 
         List<Bogie> bogies = new ArrayList<>();
@@ -31,11 +31,13 @@ public class UC7TrainConsist {
         bogies.add(new Bogie("AC Chair", 56));
         bogies.add(new Bogie("First Class", 24));
 
-        bogies.sort(Comparator.comparingInt(b -> b.capacity));
+        List<Bogie> filtered = bogies.stream()
+                .filter(b -> b.capacity > 60)
+                .collect(Collectors.toList());
 
-        System.out.println("Sorted Bogies:");
-        System.out.println(bogies);
+        System.out.println("Filtered Bogies (capacity > 60):");
+        System.out.println(filtered);
 
-        System.out.println("\nUC7 operations completed successfully...");
+        System.out.println("\nUC8 operations completed successfully...");
     }
 }
